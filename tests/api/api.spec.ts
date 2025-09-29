@@ -9,7 +9,7 @@ test("GET /products", async ({ request }) => {
   expect(body.data.length).toBe(9);
   expect(body.total).toBe(50);
 });
-
+//
 test("POST /users/login", async ({ request }) => {
   const apiUrl = "https://api.practicesoftwaretesting.com";
   const response = await request.post(apiUrl + "/users/login", {

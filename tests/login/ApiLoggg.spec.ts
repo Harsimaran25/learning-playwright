@@ -1,17 +1,25 @@
 
 
 import {test,expect,request} from '@playwright/test';
+import { ApiLogin } from '../../Utils/ApiLogin';
 
 const loginPayload={email:"customer2@practicesoftwaretesting.com",password:"welcome01"};
+let token;
 
-test.only("POST /users/login", async ({ request }) => {
-  const apiUrl = "https://api.practicesoftwaretesting.com";
-  const response = await request.post(apiUrl + "/users/login", {
-    data: loginPayload,
-  });
+test.beforeAll( async () => {
 
-  expect(response.status()).toBe(200);
-  const body = await response.json();
-  expect(body.access_token).toBeTruthy();
-  console.log(body.access_token);
+      const apiContext= await request.newContext();
+
+    const apilogin= new ApiLogin(apiContext,loginPayload);
+
+     token=await apilogin.getLoginToken();
+})
+
+test.only("Login using API without UI", async ({ page }) => {
+
+ await page.addInitScript(token =>{
+window.localStorage.setItem('auth-token',token)},token)
+
+await page.goto("https://practicesoftwaretesting.com/account");
+ 
 });
