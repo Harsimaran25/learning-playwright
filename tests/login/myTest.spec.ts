@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 
 
-test.only('mytest1', async({page})=>{
+test('mytest1', async({page})=>{
 
 await page.goto('https://practicesoftwaretesting.com/auth/login');
 
