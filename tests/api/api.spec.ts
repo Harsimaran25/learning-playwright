@@ -22,4 +22,5 @@ test("POST /users/login", async ({ request }) => {
   expect(response.status()).toBe(200);
   const body = await response.json();
   expect(body.access_token).toBeTruthy();
+  console.log(body.access_token);
 });

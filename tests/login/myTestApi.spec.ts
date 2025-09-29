@@ -14,7 +14,7 @@ test.beforeAll('mytest1statestorage', async({browser})=>{
 
   await page.goto('https://practicesoftwaretesting.com/auth/login');
 
-await page.locator('#email').fill('customer@practicesoftwaretesting.com');
+await page.locator('#email').fill('customer2@practicesoftwaretesting.com');
 await page.getByRole('textbox',{name:'Password *'}).fill('welcome01');
 await page.getByRole('button',{name:'Login'}).click();
 await page.waitForLoadState('networkidle');
@@ -28,7 +28,7 @@ await page.waitForLoadState('networkidle');
 });
 
 
-test.only('logged in to account', async()=>{
+test('logged in to account', async()=>{
 
   const page= await webContext.newPage();
 
